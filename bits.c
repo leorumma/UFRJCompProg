@@ -13,27 +13,10 @@
 #include <stdio.h>
 #include <stdint.h>
 
-/* Número não é zero
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 3
- *      Monitor: 2
- *
- *      Retorna 1 se x é diferente 0, retorna 0 caso contrário
- *
- *      Exemplo:
- *          naoEhZero(0) -> 0
- *          naoEhZero(7) -> 1
- */
 int32_t naoEhZero(int32_t x) {
-    int32_t zero = 0;
-    int32_t isEqual = 0;
-    int32_t isDifferent = 1;
-    int32_t is_x_Equal_To_Zero = !(x ^ zero);
-    
-    return is_x_Equal_To_Zero ? isEqual:isDifferent;
-}
+    return !!x; // Todo numero diferente de 0 é visto como true e o 0 sempre é false, sempre que usamos operadores lógicos essa lógica é aplicada.
+                // O primeiro NOT torna o retorno falso e o segundo NOT o torna true.Logo qualquer numero que seja diferente de 0 será false depois true.
+}               // e quando for 0 retornará retornará false, true e false. 
 
 /* Número é par ou não
  *      Permitido:
