@@ -18,8 +18,8 @@
 // e quando for 0 retornará retornará false, true e false.
 
 int32_t naoEhZero(int32_t x) {    
-    int32_t X_is_Different_From_0 = !!x;
-    return X_is_Different_From_0;                 
+    int32_t is_X_Different_From_0 = !!x;
+    return is_X_Different_From_0;                 
 }                
 
 /* Número é par ou não
@@ -37,7 +37,8 @@ int32_t naoEhZero(int32_t x) {
  *          ehPar(7) -> 0
  */
 int32_t ehPar(int32_t x) {
-    return -1;
+    int32_t is_X_Par = !(x & 1);
+    return is_X_Par;
 }
 
 /*
