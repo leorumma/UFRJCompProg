@@ -1,30 +1,8 @@
-/*
- * Primeiro laboratório de Computadores e Programação
- *
- * A ideia do laboratório é mostrar ao aluno outras formas de fazer as operações
- * que ele já está acostumado a fazer, mas de formas diferentes.
- * Criamos esse desafio com o objetivo de fazê-lo pensar em diferentes formas de se
- * atingir o mesmo resultado. Num cenário real, saber quais instruções são melhor
- * otimizadas pelo compilador pode ajudar muito a perfomance de um programa.
- *
- * O aluno deverá usar apenas um subset de operações de C para realizar o que
- * for pedido no enunciado.
- *
- * Todas as operações permitidas serão especificadas em cada questão.
- * Não está permitido o uso de if-else, for, while, switch, etc.
- *
- * Forma de avaliação:
- *      - Quantas operações o aluno utlizou para realizar a tarefa (se está dentro da quantidade aceitável)
- *      - Explicação do código -- deverá ser o mais claro possível,
- *          imaginando que qualquer pessoa sem conhecimento prévio da
- *          matéria consiga entender o que foi feito, em detalhes.
- *      - As resoluções com menos operações do que a do monitor terão bonificação.
- *
+/* 
  * Assinatura:
- *      Aluno: <nome>
- *      DRE: <DRE>
- *      versão do GCC utilizada: XX.XX.XX
- *
+ *      Aluno: Robson Duarte dos Santos
+ *      DRE: 114175915
+ *      versão do GCC utilizada: 9.2.0 *
  */
 
 #define ANSI_COLOR_RED     "\x1b[31m"
@@ -49,7 +27,12 @@
  *          naoEhZero(7) -> 1
  */
 int32_t naoEhZero(int32_t x) {
-    return -1;
+    int32_t zero = 0;
+    int32_t isEqual = 0;
+    int32_t isDifferent = 1;
+    int32_t is_x_Equal_To_Zero = !(x ^ zero);
+    
+    return is_x_Equal_To_Zero ? isEqual:isDifferent;
 }
 
 /* Número é par ou não
