@@ -13,10 +13,14 @@
 #include <stdio.h>
 #include <stdint.h>
 
-int32_t naoEhZero(int32_t x) {
-    return !!x; // Todo numero diferente de 0 é visto como true e o 0 sempre é false, sempre que usamos operadores lógicos essa lógica é aplicada.
-                // O primeiro NOT torna o retorno falso e o segundo NOT o torna true.Logo qualquer numero que seja diferente de 0 será false depois true.
-}               // e quando for 0 retornará retornará false, true e false. 
+// Todo numero diferente de 0 é visto como true e o 0 sempre é false, sempre que usamos operadores lógicos essa lógica é aplicada.
+// O primeiro NOT torna o retorno falso e o segundo NOT o torna true.Logo qualquer numero que seja diferente de 0 será false depois true.
+// e quando for 0 retornará retornará false, true e false.
+
+int32_t naoEhZero(int32_t x) {    
+    int32_t X_is_Different_From_0 = !!x;
+    return X_is_Different_From_0;                 
+}                
 
 /* Número é par ou não
  *      Permitido:
