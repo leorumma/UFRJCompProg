@@ -98,7 +98,7 @@ int32_t bitwiseAnd(int32_t x, int32_t y) {
 //Como quero que retorne 1(ou true) se forem iguais. Negarei a saida. Agora, !(A ^ B) ele me retorna 1 se forem iguais(true).
 
 int32_t ehIgual(int32_t x, int32_t y) {
-    return (x ^ y);
+    return !(x ^ y);
 }
 
 /*
