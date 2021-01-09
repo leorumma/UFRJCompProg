@@ -88,7 +88,7 @@ int32_t bitwiseAnd(int32_t x, int32_t y) {
 
 
 int32_t ehIgual(int32_t x, int32_t y) {
-    return -1;
+    return !(x ^ y);
 }
 
 /*
