@@ -46,22 +46,11 @@ Apenas verifico se o bit mais significativo está ligado, concretizando um numer
 int32_t ehPositivo(int32_t x) {
     return !(x >> 31);
 }
-
-/* Negativo sem -
- *      Permitido:
- *          Operações: ~ & ^ | ! << >> +
- *
- *      Número máximo de operações: 5
- *      Monitor: 2
- *
- *      Retorna -x
- *
- *      Exemplo:
- *          negativo(1) -> -1
- *          negativo(42) -> -42
- */
-int32_t negativo(int32_t x) {
-    return -1;
+/*
+Para por um numero em complemento a 2, que é sua representação negativa, basta inverter os bits e somar 1
+*/
+int32_t negativo(int32_t x) {    
+    return (~x + 1);
 }
 
 /* Implementação do & usando bitwise
