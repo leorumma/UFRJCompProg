@@ -88,33 +88,11 @@ int32_t mult7(int32_t x) {
 }
 
 /*
- * Bit na posição p do inteiro x
- *      Permitido:
- *          Operações bitwise: << >> | & + -
- *
- *      Número máximo de operações: 6
- *      Monitor: 2
- *
- *      Retorna o valor do bit na posição p no inteiro x
- *      Valor de retorno pode ser apenas 0 ou 1
- *
- *      p será um valor entre 0 e 31
- *
- *      Exemplo:
- *          23 em binário: 0   0 ... 0 1 0 1 1 1
- *               posições: 31 30 ... 5 4 3 2 1 0
- *
- *          bitEmP(23, 31) -> 0
- *          bitEmP(23, 5) -> 0
- *          bitEmP(23, 4) -> 1
- *          bitEmP(23, 3) -> 0
- *          bitEmP(23, 2) -> 1
- *          bitEmP(23, 1) -> 1
- *          bitEmP(23, 0) -> 1
- *
+ Tomando como exemplo 8 = (1000) e p = 3, logo nos queremos sabe o valor do quarto bit. Basta nos fazermos 8 >> 3 que teremos 0001.Para pegar somente
+ o valor que nos interessa devemos fazer (8 >> 3) & 1, assim comparamos somente o bit de interesse. 
  */
 int32_t bitEmP(int32_t x, uint8_t p) {
-    return -1;
+    return ((x >> p) & 1 ) ;
 }
 
 /*
