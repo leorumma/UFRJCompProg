@@ -89,21 +89,16 @@ int32_t ehIgual(int32_t x, int32_t y) {
     return -1;
 }
 
-/*
- * Multiplicação por 7
- *      Permitido:
- *          Operações: << >> | ! & + -
- *
- *      Número máximo de operações: 4
- *      Monitor: 2
- *
- *      Retorna x multiplicado por 7
- *
- *      Exemplo:
- *          mult7(7) -> 49
- */
+//Imaginando que a multiplicação seja a ideia de quantas vezes eu gostaria que um valor x fosse somado a ele mesmo.
+//entao, se multiplico x por 7 eu estou somando 7 vezes o valor de x a ele mesmo.
+//Assim, eu sei que << multiplica por 2^n, onde n é a quantidade de vezes que eu definir pro shift
+//fazendo, << 3 eu estaria fazendo 2^3 que daria 8.
+//Então, se eu fizer x << 2^3 -> x << 8 -> x * 8. Logo, eu estaria somando o valor de x a ele mesmo 8 vezes.
+//Mas eu gostaria de somar o valor de X a ele mesmo somente 7 vezes, como somei 1 x a mais, eu irei subtrair dele
+// Dessa forma, x << 3 - x -> x * 2^3 - x -> x * 8 -x -> 8x - x -> 7x! assim estarei somando x a ele mesmo 7 vezes
+// em outras palavras multiplicando x por 7.
 int32_t mult7(int32_t x) {
-    return -1;
+    return (x << 3) - x;
 }
 
 /*
