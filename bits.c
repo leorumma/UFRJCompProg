@@ -22,42 +22,21 @@ int32_t naoEhZero(int32_t x) {
     return is_X_Different_From_0;                 
 }                
 
-/* Número é par ou não
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 3
- *      Monitor: 2
- *
- *      Retorna 1 se x é par, retorna 0 caso contrário
- *
- *      Exemplo:
- *          ehPar(0) -> 1
- *          ehPar(2) -> 1
- *          ehPar(7) -> 0
- */
+/*
+Checa somente o primeiro bit mais a direita, se o numero terminar com 1, como 1001 é impar, logo 1 & 1 retorna true(1) , com o NOT fica false,x não é par.
+Caso termine com 0 como 1000, 1 & 0 retorna false(0) com o NOT, retorna true.
+*/
 int32_t ehPar(int32_t x) {
     int32_t is_X_Par = !(x & 1);
     return is_X_Par;
 }
 
 /*
- * Módulo 8
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 3
- *      Monitor: 1
- *
- *      Retorna x % 8
- *
- *      Exemplo:
- *          mod8(1) -> 1
- *          mod8(7) -> 7
- *          mod8(10) -> 2
- */
+como 8 é 1000(binario) e x mod 8 é um numero  estritamente menor que 8 todo número que restar na divisão por 8 estará naqueles 3 bits 0 depois do 1.
+Dai que sai a logica de fazer x & 0111 , que são exatamente os 3 a direita do 1 de 1000
+*/
 int32_t mod8(int32_t x) {
-    return -1;
+    return (x & 7);
 }
 
 /* Número positivo ou não
