@@ -137,7 +137,7 @@ int32_t byteEmP(int32_t x, uint8_t p) {
  *
  */
 int32_t negacaoLogica(int32_t x) {
-    return -1;
+        return -1;
 }
 
 void teste(int32_t saida, int32_t esperado) {
@@ -225,6 +225,8 @@ int main() {
     puts("Teste: ehIgual");
     teste(ehIgual(1,1), 1);
     teste(ehIgual(1,0), 0);
+    teste(ehIgual(8,4), 0);
+    teste(ehIgual(11,6),0);
     teste(ehIgual(0,1), 0);
     teste(ehIgual(-1,1), 0);
     teste(ehIgual(-1,-1), 1);
