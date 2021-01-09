@@ -53,23 +53,17 @@ int32_t negativo(int32_t x) {
     return (~x + 1);
 }
 
-/* Implementação do & usando bitwise
- *      Permitido:
- *          Operações: ~ ^ | ! << >>
- *
- *      Número máximo de operações: 7
- *      Monitor: 4
- *
- *      Retorna x & y
- *
- *      Exemplo:
- *          bitwiseAnd(1, 2) -> 0
- *              01 & 10 -> 00
- *          bitwiseAnd(3, 11) -> 3
- *              11 & 1011 -> 0011
+/* 
+ O & checa se os bits são iguais, então vejo onde os bits são iguais com XOR. Caso o bit comparado em X seja igual em Y, XOR me retorna 0, 
+ caso diferentes XOR retorna 1. Agora temos um binario setado em 0 os bits que queremos salvar. Precisamos do maior número que podemos ter entre X e Y
+ de bits ligados para cortar com os 1's no nosso binario alvo, já que os numeros que queremos são so os bits 0. Para obter esse binario para fazer esse 
+ eliminação de 1's que queremos basta fazer X | Y, assim todo bits ligado será capturado. Agora basta fazer :
+ ( Nosso binario alvo com os 0 que queremos salvar) ^ (Nosso binario feito com X | Y para cortar os 1's que não queremos).
+ Dessa forma todo 0 ou 1 que seriam salvos por X & Y será salvo.
+
  */
 int32_t bitwiseAnd(int32_t x, int32_t y) {
-    return -1;
+    return ((x ^ y) ^ (x | y));
 }
 
 /* 
