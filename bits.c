@@ -53,67 +53,28 @@ int32_t negativo(int32_t x) {
     return (~x + 1);
 }
 
-/* Implementação do & usando bitwise
- *      Permitido:
- *          Operações: ~ ^ | ! << >>
- *
- *      Número máximo de operações: 7
- *      Monitor: 4
- *
- *      Retorna x & y
- *
- *      Exemplo:
- *          bitwiseAnd(1, 2) -> 0
- *              01 & 10 -> 00
- *          bitwiseAnd(3, 11) -> 3
- *              11 & 1011 -> 0011
+/* 
+ O & checa se os bits são iguais, então vejo onde os bits são iguais com XOR. Caso o bit comparado em X seja igual em Y, XOR me retorna 0, 
+ caso diferentes XOR retorna 1. Agora temos um binario setado em 0 os bits que queremos salvar. Precisamos do maior número que podemos ter entre X e Y
+ de bits ligados para cortar com os 1's no nosso binario alvo, já que os numeros que queremos são so os bits 0. Para obter esse binario para fazer esse 
+ eliminação de 1's que queremos basta fazer X | Y, assim todo bits ligado será capturado. Agora basta fazer :
+ ( Nosso binario alvo com os 0 que queremos salvar) ^ (Nosso binario feito com X | Y para cortar os 1's que não queremos).
+ Dessa forma todo 0 ou 1 que seriam salvos por X & Y será salvo.
+
  */
 int32_t bitwiseAnd(int32_t x, int32_t y) {
-    return -1;
+    return ((x ^ y) ^ (x | y));
 }
 
-/* Igual sem ==
- *      Permitido:
- *          Operações: ~ & ^ | << >> ! +
- *
- *      Número máximo de operações: 3
- *      Monitor: 2
- *
- *      Retorna 1 se x == y, 0 caso contrário
- *
- *      Exemplo:
- *          ehIgual(10, 10) -> 1
- *          ehIgual(16, 8) -> 0
+/* 
+Apenas checa bit a bit se os numeros são iguais, se bits simultaneos forem iguais, o XOR irá retornar 0, caso diferentes 1. Se o X todo,
+comparado ao Y for igual, todo retorno do XOR irá ser 0, resultado em false mas X  = Y, portanto precisamos do NOT.
+Caso algum bit de X seja diferente do correspondente em Y XOR retornará 1 e isso é true, mas como X != Y precisamos do NOT para retornar false
  */
-
-//Inicialmente, Percebemos que o xor dado sua tabela verdade se asemelha muito ao != (não igual). Pelo seguinte motivo:
-//Se o bit da mesma posição de ambas as entradas forem iguais então ele retorna 0.
-//Se o bit da mesma posição de ambas as entradas forem diferentes ele retorna 1.
-//Então, se um numero for igual ele vai retornar 0 em todas as posições.
-//Se o numero for diferente, as posições que tiverem o valor binario diferente vão ficar com 1 assim nunca retornando 0.
-//Com isso pensamos, se o numero for igual ele vai retornar 0 e se o numero for diferente ele não vai retornar 0.
-//Só que comumente usamos 1 para true e 0 para false. Ou seja ate esse momento o xor esta retornando false se o numero for igual. o que seria o not equal.
-//Como queremos que retorne true, ou seja, 1 se as entradas forem iguais( os numeros forem iguais) usarei o operador ! ajeitar isso.
-//Assim, negando a afirmação anterior, dado A e B se eu fizer o xor deles A ^ B ele vai retornar 0 caso não sejam iguais.
-//Como quero que retorne 1(ou true) se forem iguais. Negarei a saida. Agora, !(A ^ B) ele me retorna 1 se forem iguais(true).
-
 int32_t ehIgual(int32_t x, int32_t y) {
     return !(x ^ y);
 }
 
-/*
- * Multiplicação por 7
- *      Permitido:
- *          Operações: << >> | ! & + -
- *
- *      Número máximo de operações: 4
- *      Monitor: 2
- *
- *      Retorna x multiplicado por 7
- *
- *      Exemplo:
- *          mult7(7) -> 49
- */
 //Imaginando que a multiplicação seja a ideia de quantas vezes eu gostaria que um valor x fosse somado a ele mesmo.
 //entao, se multiplico x por 7 eu estou somando 7 vezes o valor de x a ele mesmo.
 //Assim, eu sei que << multiplica por 2^n, onde n é a quantidade de vezes que eu definir pro shift
@@ -127,33 +88,11 @@ int32_t mult7(int32_t x) {
 }
 
 /*
- * Bit na posição p do inteiro x
- *      Permitido:
- *          Operações bitwise: << >> | & + -
- *
- *      Número máximo de operações: 6
- *      Monitor: 2
- *
- *      Retorna o valor do bit na posição p no inteiro x
- *      Valor de retorno pode ser apenas 0 ou 1
- *
- *      p será um valor entre 0 e 31
- *
- *      Exemplo:
- *          23 em binário: 0   0 ... 0 1 0 1 1 1
- *               posições: 31 30 ... 5 4 3 2 1 0
- *
- *          bitEmP(23, 31) -> 0
- *          bitEmP(23, 5) -> 0
- *          bitEmP(23, 4) -> 1
- *          bitEmP(23, 3) -> 0
- *          bitEmP(23, 2) -> 1
- *          bitEmP(23, 1) -> 1
- *          bitEmP(23, 0) -> 1
- *
+ Tomando como exemplo 8 = (1000) e p = 3, logo nos queremos sabe o valor do quarto bit. Basta nos fazermos 8 >> 3 que teremos 0001.Para pegar somente
+ o valor que nos interessa devemos fazer (8 >> 3) & 1, assim comparamos somente o bit de interesse. 
  */
 int32_t bitEmP(int32_t x, uint8_t p) {
-    return -1;
+    return ((x >> p) & 1 ) ;
 }
 
 /*
