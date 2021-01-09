@@ -13,97 +13,44 @@
 #include <stdio.h>
 #include <stdint.h>
 
-/* Número não é zero
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 3
- *      Monitor: 2
- *
- *      Retorna 1 se x é diferente 0, retorna 0 caso contrário
- *
- *      Exemplo:
- *          naoEhZero(0) -> 0
- *          naoEhZero(7) -> 1
- */
-int32_t naoEhZero(int32_t x) {
-    int32_t zero = 0;
-    int32_t isEqual = 0;
-    int32_t isDifferent = 1;
-    int32_t is_x_Equal_To_Zero = !(x ^ zero);
-    
-    return is_x_Equal_To_Zero ? isEqual:isDifferent;
-}
+// Todo numero diferente de 0 é visto como true e o 0 sempre é false, sempre que usamos operadores lógicos essa lógica é aplicada.
+// O primeiro NOT torna o retorno falso e o segundo NOT o torna true.Logo qualquer numero que seja diferente de 0 será false depois true.
+// e quando for 0 retornará retornará false, true e false.
 
-/* Número é par ou não
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 3
- *      Monitor: 2
- *
- *      Retorna 1 se x é par, retorna 0 caso contrário
- *
- *      Exemplo:
- *          ehPar(0) -> 1
- *          ehPar(2) -> 1
- *          ehPar(7) -> 0
- */
+int32_t naoEhZero(int32_t x) {    
+    int32_t is_X_Different_From_0 = !!x;
+    return is_X_Different_From_0;                 
+}                
+
+/*
+Checa somente o primeiro bit mais a direita, se o numero terminar com 1, como 1001 é impar, logo 1 & 1 retorna true(1) , com o NOT fica false,x não é par.
+Caso termine com 0 como 1000, 1 & 0 retorna false(0) com o NOT, retorna true.
+*/
 int32_t ehPar(int32_t x) {
-    return -1;
+    int32_t is_X_Par = !(x & 1);
+    return is_X_Par;
 }
 
 /*
- * Módulo 8
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 3
- *      Monitor: 1
- *
- *      Retorna x % 8
- *
- *      Exemplo:
- *          mod8(1) -> 1
- *          mod8(7) -> 7
- *          mod8(10) -> 2
- */
+como 8 é 1000(binario) e x mod 8 é um numero  estritamente menor que 8 todo número que restar na divisão por 8 estará naqueles 3 bits 0 depois do 1.
+Dai que sai a logica de fazer x & 0111 , que são exatamente os 3 a direita do 1 de 1000
+*/
 int32_t mod8(int32_t x) {
-    return -1;
+    return (x & 7);
 }
 
-/* Número positivo ou não
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 5
- *      Monitor: 2
- *
- *      Retorna 1 se número é positivo, 0 caso contrário
- *
- *      Exemplo:
- *          ehPositivo(878) -> 1
- *          ehPositivo(-343) -> 0
- */
+/*
+Apenas verifico se o bit mais significativo está ligado, concretizando um numero negativo.
+*/
+
 int32_t ehPositivo(int32_t x) {
-    return -1;
+    return !(x >> 31);
 }
-
-/* Negativo sem -
- *      Permitido:
- *          Operações: ~ & ^ | ! << >> +
- *
- *      Número máximo de operações: 5
- *      Monitor: 2
- *
- *      Retorna -x
- *
- *      Exemplo:
- *          negativo(1) -> -1
- *          negativo(42) -> -42
- */
-int32_t negativo(int32_t x) {
-    return -1;
+/*
+Para por um numero em complemento a 2, que é sua representação negativa, basta inverter os bits e somar 1
+*/
+int32_t negativo(int32_t x) {    
+    return (~x + 1);
 }
 
 /* Implementação do & usando bitwise
