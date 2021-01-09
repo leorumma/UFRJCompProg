@@ -127,11 +127,10 @@ os bits de 0 e soma 1 todo os bits voltam a ser 0 e quando fazemos o shift pra d
 Essa volta toda só para o 0 retornar 1. Os outros numeros quando se fizer o complemento sempre terão um bit mais a esquerda setado como 1 então no final
 somando este 1 com 1 sempre  irão retornar 0
  */
-
-
+ 
 int32_t negacaoLogica(int32_t x) {         
     return ((x | (~x +1)) >> 31) + 1; 
-}
+
 
 void teste(int32_t saida, int32_t esperado) {
     static uint8_t test_number = 0;
@@ -218,6 +217,8 @@ int main() {
     puts("Teste: ehIgual");
     teste(ehIgual(1,1), 1);
     teste(ehIgual(1,0), 0);
+    teste(ehIgual(8,4), 0);
+    teste(ehIgual(11,6),0);
     teste(ehIgual(0,1), 0);
     teste(ehIgual(-1,1), 0);
     teste(ehIgual(-1,-1), 1);
