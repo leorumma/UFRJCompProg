@@ -86,9 +86,19 @@ int32_t bitwiseAnd(int32_t x, int32_t y) {
  *          ehIgual(16, 8) -> 0
  */
 
+//Inicialmente, Percebemos que o xor dado sua tabela verdade se asemelha muito ao != (não igual). Pelo seguinte motivo:
+//Se o bit da mesma posição de ambas as entradas forem iguais então ele retorna 0.
+//Se o bit da mesma posição de ambas as entradas forem diferentes ele retorna 1.
+//Então, se um numero for igual ele vai retornar 0 em todas as posições.
+//Se o numero for diferente, as posições que tiverem o valor binario diferente vão ficar com 1 assim nunca retornando 0.
+//Com isso pensamos, se o numero for igual ele vai retornar 0 e se o numero for diferente ele não vai retornar 0.
+//Só que comumente usamos 1 para true e 0 para false. Ou seja ate esse momento o xor esta retornando false se o numero for igual. o que seria o not equal.
+//Como queremos que retorne true, ou seja, 1 se as entradas forem iguais( os numeros forem iguais) usarei o operador ! ajeitar isso.
+//Assim, negando a afirmação anterior, dado A e B se eu fizer o xor deles A ^ B ele vai retornar 0 caso não sejam iguais.
+//Como quero que retorne 1(ou true) se forem iguais. Negarei a saida. Agora, !(A ^ B) ele me retorna 1 se forem iguais(true).
 
 int32_t ehIgual(int32_t x, int32_t y) {
-    return !(x ^ y);
+    return (x ^ y);
 }
 
 /*
@@ -276,6 +286,8 @@ int main() {
     puts("Teste: ehIgual");
     teste(ehIgual(1,1), 1);
     teste(ehIgual(1,0), 0);
+    teste(ehIgual(8,4), 0);
+    teste(ehIgual(11,6),0);
     teste(ehIgual(0,1), 0);
     teste(ehIgual(-1,1), 0);
     teste(ehIgual(-1,-1), 1);
