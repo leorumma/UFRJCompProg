@@ -72,21 +72,13 @@ int32_t bitwiseAnd(int32_t x, int32_t y) {
     return -1;
 }
 
-/* Igual sem ==
- *      Permitido:
- *          Operações: ~ & ^ | << >> ! +
- *
- *      Número máximo de operações: 3
- *      Monitor: 2
- *
- *      Retorna 1 se x == y, 0 caso contrário
- *
- *      Exemplo:
- *          ehIgual(10, 10) -> 1
- *          ehIgual(16, 8) -> 0
+/* 
+Apenas checa bit a bit se os numeros são iguais, se bits simultaneos forem iguais, o XOR irá retornar 0, caso diferentes 1. Se o X todo,
+comparado ao Y for igual, todo retorno do XOR irá ser 0, resultado em false mas X  = Y, portanto precisamos do NOT.
+Caso algum bit de X seja diferente do correspondente em Y XOR retornará 1 e isso é true, mas como X != Y precisamos do NOT para retornar false
  */
 int32_t ehIgual(int32_t x, int32_t y) {
-    return -1;
+    return !(x ^ y);
 }
 
 //Imaginando que a multiplicação seja a ideia de quantas vezes eu gostaria que um valor x fosse somado a ele mesmo.
