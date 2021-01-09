@@ -39,21 +39,12 @@ int32_t mod8(int32_t x) {
     return (x & 7);
 }
 
-/* Número positivo ou não
- *      Permitido:
- *          Operações: ~ & ^ | ! << >>
- *
- *      Número máximo de operações: 5
- *      Monitor: 2
- *
- *      Retorna 1 se número é positivo, 0 caso contrário
- *
- *      Exemplo:
- *          ehPositivo(878) -> 1
- *          ehPositivo(-343) -> 0
- */
+/*
+Apenas verifico se o bit mais significativo está ligado, concretizando um numero negativo.
+*/
+
 int32_t ehPositivo(int32_t x) {
-    return -1;
+    return !(x >> 31);
 }
 
 /* Negativo sem -
