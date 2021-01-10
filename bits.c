@@ -98,19 +98,19 @@ int32_t bitEmP(int32_t x, uint8_t p) {
 }
 
 /*
-  parecido com o bitEmP, vou tomar como exemplo 0xF5FEAC32, p = 0 e a mascara 0xFF. Assim, quero saber o valor do primeiro conjunto de 2Bytes ou 8 bits.
+  parecido com o bitEmP, vou tomar como exemplo 0xF5FEAC32, p = 0 e a mascara 0xFF. Assim, quero saber o valor do primeiro conjunto de 1 byte ou 8 bits.
   logo, 0xF5FEAC32 -> 0x32. Seguindo essa ideia e sabendo que o valor de p = {0,1,2}. Vou seguir o seguinte raciocionio:
   p = 0 -> 0 Bytes -> 0 bits
-  p = 1 -> 2 Bytes -> 8 bits
-  p = 2 -> 4 Bytes -> 16 bits
-  p = 3 -> 6 Bytes -> 24 bits
-  como eu sei que o conjunto de dados que eu quero mostrar tem tamanho 2 Bytes ou 8 bits e sabendo das propriedades do & vou usar a mascara 0xFF
+  p = 1 -> 1 Bytes -> 8 bits
+  p = 2 -> 2 Bytes -> 16 bits
+  p = 3 -> 3 Bytes -> 24 bits
+  como eu sei que o conjunto de dados que eu quero mostrar tem tamanho 1 Byte ou 8 bits e sabendo das propriedades do & vou usar a mascara 0xFF
   como 0xFF representa 000...11111111 em binario.
   Assim, (x >> (p<<3)) & 0XFF, seguindo a seguinte tabela:
   p = 0 -> 0 Bytes -> 0  bits => (0xF5FEAC32 >> (0 << 3)) & 0XFF => (0xF5FEAC32 >> 0 * 2^3) => 0xF5FEAC32 >> 0  & 0xFF => 0xF5FEAC32 & 0xFF -> 32
-  p = 1 -> 2 Bytes -> 8  bits => (0xF5FEAC32 >> (1 << 3)) & 0XFF => (0xF5FEAC32 >> 1 * 2^3) => 0xF5FEAC32 >> 8  & 0xFF => 0x00F5FEAC & 0xFF -> AC
-  p = 2 -> 4 Bytes -> 16 bits => (0xF5FEAC32 >> (2 << 3)) & 0XFF => (0xF5FEAC32 >> 2 * 2^3) => 0xF5FEAC32 >> 16 & 0xFF => 0x0000F5FE & 0xFF -> FE
-  p = 3 -> 6 Bytes -> 24 bits => (0xF5FEAC32 >> (3 << 3)) & 0XFF => (0xF5FEAC32 >> 3 * 2^3) => 0xF5FEAC32 >> 24 & 0xFF => 0x000000F5 & 0xFF -> F5
+  p = 1 -> 1 Bytes -> 8  bits => (0xF5FEAC32 >> (1 << 3)) & 0XFF => (0xF5FEAC32 >> 1 * 2^3) => 0xF5FEAC32 >> 8  & 0xFF => 0x00F5FEAC & 0xFF -> AC
+  p = 2 -> 2 Bytes -> 16 bits => (0xF5FEAC32 >> (2 << 3)) & 0XFF => (0xF5FEAC32 >> 2 * 2^3) => 0xF5FEAC32 >> 16 & 0xFF => 0x0000F5FE & 0xFF -> FE
+  p = 3 -> 3 Bytes -> 24 bits => (0xF5FEAC32 >> (3 << 3)) & 0XFF => (0xF5FEAC32 >> 3 * 2^3) => 0xF5FEAC32 >> 24 & 0xFF => 0x000000F5 & 0xFF -> F5
   */
 int32_t byteEmP(int32_t x, uint8_t p) {
     return (x >> (p << 3) ) & 0xFF;
