@@ -96,29 +96,22 @@ int32_t bitEmP(int32_t x, uint8_t p) {
 }
 
 /*
- * Byte na posição p do inteiro x
- *      Permitido:
- *          Operações: << >> | ! &
- *
- *      Número máximo de operações: 6
- *      Monitor: 3
- *
- *      Retorna o valor do bit na posição p no inteiro x
- *      Valor de retorno pode ser entre 0 e 0xFF
- *
- *      p será um valor entre 0 e 3
- *      0 retorna LSB
- *      3 retorna MSB
- *
- *      Exemplo:
- *          byteEmP(0x12345678, 0) -> 0x78
- *          byteEmP(0x12345678, 1) -> 0x56
- *          byteEmP(0x12345678, 2) -> 0x34
- *          byteEmP(0x12345678, 3) -> 0x12
- *
- */
-int32_t byteEmP(int32_t x, uint8_t p) {     
-    return ((x >>(8 * p)) & 0xFF);    
+  parecido com o bitEmP, vou tomar como exemplo 0xF5FEAC32, p = 0 e a mascara 0xFF. Assim, quero saber o valor do primeiro conjunto de 2Bytes ou 8 bits.
+  logo, 0xF5FEAC32 -> 0x32. Seguindo essa ideia e sabendo que o valor de p = {0,1,2}. Vou seguir o seguinte raciocionio:
+  p = 0 -> 0 Bytes -> 0 bits
+  p = 1 -> 2 Bytes -> 8 bits
+  p = 2 -> 4 Bytes -> 16 bits
+  p = 3 -> 6 Bytes -> 24 bits
+  como eu sei que o conjunto de dados que eu quero mostrar tem tamanho 2 Bytes ou 8 bits e sabendo das propriedades do & vou usar a mascara 0xFF
+  como 0xFF representa 000...11111111 em binario.
+  Assim, (x >> (p<<3)) & 0XFF, seguindo a seguinte tabela:
+  p = 0 -> 0 Bytes -> 0  bits => (0xF5FEAC32 >> (0 << 3)) & 0XFF => (0xF5FEAC32 >> 0 * 2^3) => 0xF5FEAC32 >> 0  & 0xFF => 0xF5FEAC32 & 0xFF -> 32
+  p = 1 -> 2 Bytes -> 8  bits => (0xF5FEAC32 >> (1 << 3)) & 0XFF => (0xF5FEAC32 >> 1 * 2^3) => 0xF5FEAC32 >> 8  & 0xFF => 0x00F5FEAC & 0xFF -> AC
+  p = 2 -> 4 Bytes -> 16 bits => (0xF5FEAC32 >> (2 << 3)) & 0XFF => (0xF5FEAC32 >> 2 * 2^3) => 0xF5FEAC32 >> 16 & 0xFF => 0x0000F5FE & 0xFF -> FE
+  p = 3 -> 6 Bytes -> 24 bits => (0xF5FEAC32 >> (3 << 3)) & 0XFF => (0xF5FEAC32 >> 3 * 2^3) => 0xF5FEAC32 >> 24 & 0xFF => 0x000000F5 & 0xFF -> F5
+  */
+int32_t byteEmP(int32_t x, uint8_t p) {
+    return (x >> (p << 3) ) & 0xFF;
 }
 
 /*
@@ -128,8 +121,9 @@ Essa volta toda só para o 0 retornar 1. Os outros numeros quando se fizer o com
 somando este 1 com 1 sempre  irão retornar 0
  */
  
-int32_t negacaoLogica(int32_t x) {         
-    return ((x | (~x +1)) >> 31) + 1; 
+int32_t negacaoLogica(int32_t x) {
+    return ((x | (~x + 1)) >> 31) + 1;
+}
 
 
 void teste(int32_t saida, int32_t esperado) {
