@@ -13,10 +13,11 @@
 #include <stdio.h>
 #include <stdint.h>
 
-// Todo numero diferente de 0 é visto como true e o 0 sempre é false, sempre que usamos operadores lógicos essa lógica é aplicada.
-// O primeiro NOT torna o retorno falso e o segundo NOT o torna true.Logo qualquer numero que seja diferente de 0 será false depois true.
-// e quando for 0 retornará retornará false, true e false.
-
+/*
+Todo numero diferente de 0 é visto como true e o 0 sempre é false, sempre que usamos operadores lógicos essa lógica é aplicada.
+O primeiro NOT torna o retorno falso e o segundo NOT o torna true.Logo qualquer numero que seja diferente de 0 será false depois true.
+e quando for 0 retornará retornará false, true e false.
+ */
 int32_t naoEhZero(int32_t x) {    
     int32_t is_X_Different_From_0 = !!x;
     return is_X_Different_From_0;                 
@@ -42,10 +43,10 @@ int32_t mod8(int32_t x) {
 /*
 Apenas verifico se o bit mais significativo está ligado, concretizando um numero negativo.
 */
-
 int32_t ehPositivo(int32_t x) {
     return !(x >> 31);
 }
+
 /*
 Para por um numero em complemento a 2, que é sua representação negativa, basta inverter os bits e somar 1
 */
@@ -60,7 +61,6 @@ int32_t negativo(int32_t x) {
  eliminação de 1's que queremos basta fazer X | Y, assim todo bits ligado será capturado. Agora basta fazer :
  ( Nosso binario alvo com os 0 que queremos salvar) ^ (Nosso binario feito com X | Y para cortar os 1's que não queremos).
  Dessa forma todo 0 ou 1 que seriam salvos por X & Y será salvo.
-
  */
 int32_t bitwiseAnd(int32_t x, int32_t y) {
     return ((x ^ y) ^ (x | y));
@@ -75,14 +75,16 @@ int32_t ehIgual(int32_t x, int32_t y) {
     return !(x ^ y);
 }
 
-//Imaginando que a multiplicação seja a ideia de quantas vezes eu gostaria que um valor x fosse somado a ele mesmo.
-//entao, se multiplico x por 7 eu estou somando 7 vezes o valor de x a ele mesmo.
-//Assim, eu sei que << multiplica por 2^n, onde n é a quantidade de vezes que eu definir pro shift
-//fazendo, << 3 eu estaria fazendo 2^3 que daria 8.
-//Então, se eu fizer x << 2^3 -> x << 8 -> x * 8. Logo, eu estaria somando o valor de x a ele mesmo 8 vezes.
-//Mas eu gostaria de somar o valor de X a ele mesmo somente 7 vezes, como somei 1 x a mais, eu irei subtrair dele
-// Dessa forma, x << 3 - x -> x * 2^3 - x -> x * 8 -x -> 8x - x -> 7x! assim estarei somando x a ele mesmo 7 vezes
-// em outras palavras multiplicando x por 7.
+/*
+Imaginando que a multiplicação seja a ideia de quantas vezes eu gostaria que um valor x fosse somado a ele mesmo.
+entao, se multiplico x por 7 eu estou somando 7 vezes o valor de x a ele mesmo.
+Assim, eu sei que << multiplica por 2^n, onde n é a quantidade de vezes que eu definir pro shift
+fazendo, << 3 eu estaria fazendo 2^3 que daria 8.
+Então, se eu fizer x << 2^3 -> x << 8 -> x * 8. Logo, eu estaria somando o valor de x a ele mesmo 8 vezes.
+Mas eu gostaria de somar o valor de X a ele mesmo somente 7 vezes, como somei 1 x a mais, eu irei subtrair dele
+Dessa forma, x << 3 - x -> x * 2^3 - x -> x * 8 -x -> 8x - x -> 7x! assim estarei somando x a ele mesmo 7 vezes
+em outras palavras multiplicando x por 7.
+ */
 int32_t mult7(int32_t x) {
     return (x << 3) - x;
 }
