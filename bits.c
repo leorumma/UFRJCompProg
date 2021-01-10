@@ -3,6 +3,7 @@
  *      Aluno: Robson Duarte dos Santos e Leonardo Ruma Martins
  *      DRE: 114175915 e 115198102
  *      versão do GCC utilizada: 9.2.0 *
+ *      github: https://github.com/leorumma/UFRJCompProg/blob/main/bits.c
  */
 
 #define ANSI_COLOR_RED     "\x1b[31m"
