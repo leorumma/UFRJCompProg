@@ -1,7 +1,7 @@
 /* 
  * Assinatura:
- *      Aluno: Robson Duarte dos Santos
- *      DRE: 114175915
+ *      Aluno: Robson Duarte dos Santos e Leonardo Ruma Martins
+ *      DRE: 114175915 e 115198102
  *      versão do GCC utilizada: 9.2.0 *
  */
 
